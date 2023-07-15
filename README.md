@@ -17,13 +17,17 @@ This script converts a Squarespace export (in a Wordpress XML file) to simple Ma
 
 Run the script with the following command:
 
-`python script.py <xml_file> [--download_images] [--img_url IMG_URL] [--namespace PREFIX URI]`
+`python script.py [--download_images] [--img_url IMG_URL] [--namespace NAMESPACE_URI]`
 
-Replace `<xml_file>` with the path to your XML file. Use the `--download_images` flag to download images. Use the `--img_url` option to specify the base URL for images. Use the `--namespace` option to specify the namespaces and their URIs.
+- `--download_images`: Use this flag to download images.
+- `--img_url IMG_URL`: (Optional) Specify the base URL for images. The default value is `https://images.squarespace-cdn.com`. In most cases, you won't need to change this.
+- `--namespace NAMESPACE_URI`: (Optional) Specify the namespace URI. The default value is `http://purl.org/rss/1.0/modules/content/`. In most cases, you won't need to change this.
 
 Example:
 
-`python script.py squarespace.xml --download_images --img_url https://images.squarespace-cdn.com --namespace content http://purl.org/rss/1.0/modules/content/`
+`python script.py --download_images`
+
+In this example, the script will use the default values for `--img_url` and `--namespace`.
 
 ## Running Tests
 

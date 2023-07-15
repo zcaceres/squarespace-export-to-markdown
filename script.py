@@ -99,5 +99,9 @@ def main(download_images_flag):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process squarespace.xml.')
     parser.add_argument('--download_images', action='store_true', help='Download images if flag is set')
+    parser.add_argument('--img_url', default='images.squarespace-cdn.com', help='Base URL for images')
+    parser.add_argument('--namespace', default='http://purl.org/rss/1.0/modules/content/', help='Namespace URI')
     args = parser.parse_args()
+    IMG_URL = args.img_url
+    namespace = {'content': args.namespace, 'wp': 'http://wordpress.org/export/1.2/'}
     main(args.download_images)
