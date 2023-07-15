@@ -1,6 +1,19 @@
 # Convert Squarespace Exports to Markdown and Images
 
-This script converts a Squarespace export (in a Wordpress XML file) to simple Markdown files and a directory of images.
+This project provides a Python script that converts a Squarespace export (in a Wordpress XML format) into simple Markdown files and a directory of images. It's designed to help users migrate their Squarespace content to a platform that supports Markdown, such as Jekyll, Hugo, or Ghost.
+
+You'll need to export your Squarespace site as an XML file. To do this, go to Settings > Advanced > Import/Export. Then click the Export button. This will download an XML file to your computer. You can use this file as input for the script. [Follow this guide](https://support.squarespace.com/hc/en-us/articles/206566687-Exporting-your-site) for more information.
+
+The script parses the XML file, extracts the content, and converts it into Markdown format. It also downloads images from the Squarespace site and saves them locally. The script is configurable, allowing users to specify whether to download images and to set the base URL for images and the namespace URI.
+
+This project is ideal for users who want to migrate their Squarespace site to a different platform without losing their content or manually converting each post to Markdown. It's also useful for users who want to backup their Squarespace content in a more portable and widely supported format.
+
+Key Features
+- Converts Squarespace content to Markdown files
+- Downloads images from Squarespace site
+- Configurable settings for image URL and namespace URI
+- Easy to use with command-line interface
+- Supports Python 3.6 and higher
 
 ## Requirements
 
