@@ -1,3 +1,5 @@
+# script.py
+
 import os
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -30,7 +32,6 @@ def get_image_urls(root):
                 urls.append(element.text)
     return urls
 
-
 def download_images(urls):
     for url in urls:
         filename = url.split('/')[-1]
@@ -47,9 +48,9 @@ def write_as_markdown_file(title, post_name, pub_date, file_contents):
         file.write('---\n')
         file.write(file_contents)
 
-
-def download_html_contents(root):
+def parse_html_contents(root):
     namespace = {'content': 'http://purl.org/rss/1.0/modules/content/', 'wp': 'http://wordpress.org/export/1.2/'}
+    contents = []
     for item in root.findall('./channel/item'):
         post_type = item.find('{%s}post_type' % namespace['wp'])
         if post_type is None or post_type.text != 'attachment':
@@ -81,8 +82,8 @@ def download_html_contents(root):
             text_content = soup.get_text()
             # Remove leading and trailing whitespace and extra newline blocks
             text_content = text_content.strip().replace('\n\n\n', '')
-            write_as_markdown_file(title, post_name, pub_date, text_content)
-
+            contents.append((title, post_name, pub_date, text_content))
+    return contents
 
 def main(download_images_flag):
     create_img_dir()
@@ -91,7 +92,9 @@ def main(download_images_flag):
     if download_images_flag:
         urls = get_image_urls(root)
         download_images(urls)
-    download_html_contents(root)
+    contents = parse_html_contents(root)
+    for content in contents:
+        write_as_markdown_file(*content)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process squarespace.xml.')

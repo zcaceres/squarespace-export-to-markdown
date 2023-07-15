@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 import os
 import xml.etree.ElementTree as ET
-from script import create_img_dir, get_image_urls, download_images, write_as_markdown_file, download_html_contents
+from script import create_img_dir, get_image_urls, download_images, write_as_markdown_file, parse_html_contents
 
 class TestScript(unittest.TestCase):
     @mock.patch('os.makedirs')
@@ -56,8 +56,8 @@ class TestScript(unittest.TestCase):
             </channel>
         </rss>
         """)
-        download_html_contents(root)
-        mock_write_as_markdown_file.assert_called_once_with('Sample Title', 'Sample Post Name', 'Sample Date', 'Sample Content')
+        expected_contents = [('Sample Title', 'Sample Post Name', 'Sample Date', 'Sample Content')]
+        self.assertEqual(parse_html_contents(root), expected_contents)
 
 if __name__ == '__main__':
     unittest.main()
