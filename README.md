@@ -26,6 +26,8 @@ Key Features
 
 ## Usage
 
+Before running, make sure that your `.xml` file is named `squarespace.xml` and is in the same directory as the script.
+
 Run the script with the following command:
 
 `python script.py [--download_images] [--img_url IMG_URL] [--namespace NAMESPACE_URI]`
